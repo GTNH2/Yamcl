@@ -37,9 +37,6 @@ public class CreativeTabsManager
    */
   public CreativeTabs GetCreativeTabInstance( String pDefinedCreativeTabName )
   {
-    if( _mCreativeTabsMap.containsKey( pDefinedCreativeTabName ) )
-      return _mCreativeTabsMap.get( pDefinedCreativeTabName );
-    else
-      return null;
+    return _mCreativeTabsMap.getOrDefault(pDefinedCreativeTabName, null);
   }
 }
