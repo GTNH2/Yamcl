@@ -10,7 +10,7 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class CreativeTabsManager
 {
-  private Map<String, CreativeTabs> _mCreativeTabsMap = new HashMap<String, CreativeTabs>();
+  private Map<String, CreativeTabs> _mCreativeTabsMap = new HashMap<>();
 
   /**
    * Add new creativetab to local registry for later use
@@ -20,13 +20,12 @@ public class CreativeTabsManager
    */
   public boolean AddCreativeTab( ModCreativeTab pCreativeTab )
   {
-    if( !_mCreativeTabsMap.containsKey( pCreativeTab.getTabName() ) )
-    {
-      _mCreativeTabsMap.put( pCreativeTab.getTabName(), pCreativeTab );
-      return true;
-    }
-    else
-      return false;
+    return _mCreativeTabsMap.putIfAbsent(pCreativeTab.getTabName(), pCreativeTab) == pCreativeTab;
+  }
+
+  public boolean AddCreativeTab( CreativeTabs pCreativeTab )
+  {
+    return _mCreativeTabsMap.putIfAbsent(pCreativeTab.getTabLabel(), pCreativeTab) == pCreativeTab;
   }
 
   /**
