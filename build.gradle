@@ -9,9 +9,14 @@ buildscript {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
+        maven {
+            name = "jitpack"
+            url = "https://jitpack.io"
+        }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        //Defaults to Java 8 & UTF-8 encoding
+        classpath 'com.github.GTNH2:ForgeGradle:061ac05b6c'
     }
 }
 
@@ -27,9 +32,6 @@ file "build.properties" withReader {
 
 allprojects {
     apply plugin: 'java'
-	compileJava.options.encoding = 'UTF-8'
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
 }
 
 version = "${config.minecraft.version}-${config.yamcore.version}"
